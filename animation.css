@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100dvh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    padding: 2rem 0 0;
+    width: min(80rem, 95%);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.container .box-wrapper {
+    padding: 1.5rem;
+    height: 12rem;
+    flex: 0 0 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .box-wrapper .box {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    cursor: pointer;
+}
+
+.container .box-wrapper .box.open {
+    animation: horizontal-shaking 1s linear;
+}
+
+.container .box-wrapper .box img {
+    position: absolute;
+    inset: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s linear;
+}
+
+.container .box-wrapper .box .box-2 {
+    z-index: 5;
+}
+
+.container .box-wrapper .box.open .box-2 {
+    transform: translate(-50%, -75%);
+}
+
+.modal-wrapper {
+    display: none;
+    padding: 1rem 1rem 0;
+    position: absolute;
+    inset: 0;
+
+    flex-direction: column-reverse;
+
+    background: rgba(0, 0, 0, .3);
+    z-index: 500;
+    animation: fade .5s linear;
+}
+
+.modal-wrapper .modal {
+    padding: 1.5rem;
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    text-align: center;
+    background: #fff;
+    border-radius: 1rem;
+}
+
+.modal-wrapper .modal .loader {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid #c6c6c6;
+    border-radius: 50%;
+    transition: all .2s;
+}
+
+.modal-wrapper .modal .loader.complete {
+    border-color: #000;
+}
+
+.modal-wrapper .modal .loader .loading {
+    position: absolute;
+    inset: -2.5px;
+    border: 3px solid transparent;
+    border-left-color: #000;
+    border-radius: 50%;
+    animation: rotate 2s linear .3s;
+}
+
+.modal-wrapper .modal .loader .mark {
+    position: relative;
+    width: 2rem;
+    height: 4rem;
+    rotate: 45deg;
+    transform: translate(-0.5rem, -1rem);
+}
+
+.modal-wrapper .modal .loader .mark::before {
+    position: absolute;
+    content: "";
+    background: #000;
+    width: 0rem;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all .3s linear;
+}
+
+.modal-wrapper .modal .loader .mark::after {
+    position: absolute;
+    content: "";
+    background: #000;
+    height: 0rem;
+    width: 3px;
+    bottom: 0;
+    right: 0;
+    transition: all .3s linear .3s;
+}
+
+.modal-wrapper .modal .loader .mark.checked::before {
+    width: 2rem;
+}
+
+.modal-wrapper .modal .loader .mark.checked::after {
+    height: 4rem;
+
+}
+
+
+.modal-wrapper .modal .title {
+    font-size: 4.5rem;
+    text-transform: uppercase;
+}
+
+.modal-wrapper .modal .description {
+    font-size: 2rem;
+}
+
+
+
+@keyframes horizontal-shaking {
+    0% {
+        transform: translateX(0)
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(5px)
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(-5px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}
+
+@keyframes rotate {
+    to {
+        rotate: 360deg;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
